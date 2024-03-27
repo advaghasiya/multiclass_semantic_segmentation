@@ -1,3 +1,6 @@
 test
 train
 val
+images 
+masks
+__pycache__
