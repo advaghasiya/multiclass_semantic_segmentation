@@ -9,12 +9,13 @@ easy to test various loss functions and optimizers.
 from keras.models import Model
 from keras.layers import Input, Conv2D, MaxPooling2D, UpSampling2D, concatenate, Conv2DTranspose, BatchNormalization, Dropout, Lambda
 from keras import backend as K
+import tensorflow as tf
 
 def jacard_coef(y_true, y_pred):
-    y_true_f = K.reshape(y_true, (-1,))
-    y_pred_f = K.reshape(y_pred, (-1,))
-    intersection = K.sum(y_true_f * y_pred_f)
-    return (intersection + 1.0) / (K.sum(y_true_f) + K.sum(y_pred_f) - intersection + 1.0)
+    y_true_f = tf.reshape(y_true, (-1,))  # Flatten the tensor
+    y_pred_f = tf.reshape(y_pred, (-1,))  # Flatten the tensor
+    intersection = tf.reduce_sum(y_true_f * y_pred_f)
+    return (intersection + 1.0) / (tf.reduce_sum(y_true_f) + tf.reduce_sum(y_pred_f) - intersection + 1.0)
 
 
 

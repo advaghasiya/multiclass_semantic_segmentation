@@ -251,15 +251,3 @@ print("Image Height: ", IMG_HEIGHT)
 print("Image Width: ", IMG_WIDTH)
 print("Image Channels: ", IMG_CHANNELS)
 
-from simple_multi_unet_model import multi_unet_model, jacard_coef  
-
-metrics=['accuracy', jacard_coef]
-
-def get_model():
-    return multi_unet_model(n_classes=n_classes, IMG_HEIGHT=IMG_HEIGHT, IMG_WIDTH=IMG_WIDTH, IMG_CHANNELS=IMG_CHANNELS)
-
-model = get_model()
-model.compile(optimizer='adam', loss=total_loss, metrics=metrics)
-#model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=metrics)
-model.summary()
-model.input_shape, model.output_shape
